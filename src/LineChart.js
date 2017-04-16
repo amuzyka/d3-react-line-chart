@@ -24,7 +24,7 @@ class LineChart extends Component {
   }
 
   componentWillMount(){
-      this.dataFromCSV();
+      this.dataFromTSV();
   }
 
   get xAxis(){
@@ -53,12 +53,12 @@ class LineChart extends Component {
      return (<path className="line" d={this.line(this.state.data)}/>);
   }
 
-  dataFromCSV(path){
+  dataFromTSV(path){
 
-    path = path || 'data.csv';
+    path = path || 'data.tsv';
 
-    d3.csv(path, (err, data)=>{
-     
+    d3.tsv(path, (err, data)=>{
+
         data = data.map((d)=>({close: +d.close,
                                date: d3.timeParse("%d-%b-%y")(d.date)
                               }));
